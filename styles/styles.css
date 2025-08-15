@@ -173,7 +173,7 @@ body .container-grid .mobile-controls {
   max-width: 352px;
 }
 body .container-grid .mobile-controls button {
-  padding: 10px 15px;
+  padding: 20px 15px;
   font-size: 1rem;
   background-color: #fff;
   cursor: pointer;
@@ -183,6 +183,7 @@ body .container-grid .mobile-controls button {
   background-size: contain;
   border: none;
   outline: none;
+  touch-action: manipulation;
 }
 body .container-grid .mobile-controls button#btn-left {
   transform: rotate(180deg);
@@ -204,7 +205,8 @@ body .container-grid .mobile-controls button#btn-rotate {
   order: 1;
   color: #000;
   background-image: none;
-  padding: 0;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 @media (max-width: 991px) {
   body {

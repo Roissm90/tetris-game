@@ -185,7 +185,7 @@ body {
       max-width: 352px;
 
       button {
-        padding: 10px 15px;
+        padding: 20px 15px;
         font-size: 1rem;
         background-color: #fff;
         cursor: pointer;
@@ -195,6 +195,7 @@ body {
         background-size: contain;
         border: none;
         outline: none;
+        touch-action: manipulation;
 
         &#btn-left {
           transform: rotate(180deg);
@@ -216,7 +217,8 @@ body {
           order: 1;
           color: #000;
           background-image: none;
-          padding: 0;
+          margin-bottom: 20px;
+          padding: 10px;
           //transform: rotate(180deg);
         }
 

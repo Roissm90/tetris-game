@@ -10,7 +10,7 @@ const colors = {
   S: "color-S",
   Z: "color-Z",
   J: "color-J",
-  L: "color-L"
+  L: "color-L",
 };
 
 let board = [];
@@ -29,28 +29,28 @@ const pieces = {
   I: [[1, 1, 1, 1]],
   O: [
     [1, 1],
-    [1, 1]
+    [1, 1],
   ],
   T: [
     [0, 1, 0],
-    [1, 1, 1]
+    [1, 1, 1],
   ],
   S: [
     [0, 1, 1],
-    [1, 1, 0]
+    [1, 1, 0],
   ],
   Z: [
     [1, 1, 0],
-    [0, 1, 1]
+    [0, 1, 1],
   ],
   J: [
     [1, 0, 0],
-    [1, 1, 1]
+    [1, 1, 1],
   ],
   L: [
     [0, 0, 1],
-    [1, 1, 1]
-  ]
+    [1, 1, 1],
+  ],
 };
 
 // ========================
@@ -65,9 +65,9 @@ function randomPiece() {
   const type = types[Math.floor(Math.random() * types.length)];
   return {
     type: type,
-    shape: pieces[type].map(row => [...row]),
+    shape: pieces[type].map((row) => [...row]),
     row: 0,
-    col: Math.floor(COLS / 2) - Math.ceil(pieces[type][0].length / 2)
+    col: Math.floor(COLS / 2) - Math.ceil(pieces[type][0].length / 2),
   };
 }
 
@@ -112,9 +112,7 @@ function drawNextPiece() {
         const r = startRow + rIdx;
         const c = startCol + cIdx;
         const index = r * 4 + c;
-        $("#next-piece-board .cell")
-          .eq(index)
-          .addClass(colors[nextPiece.type]);
+        $("#next-piece-board .cell").eq(index).addClass(colors[nextPiece.type]);
       }
     });
   });
@@ -139,7 +137,7 @@ function dropPiece() {
 
 function rotatePiece() {
   const shape = currentPiece.shape;
-  const rotated = shape[0].map((_, i) => shape.map(row => row[i]).reverse());
+  const rotated = shape[0].map((_, i) => shape.map((row) => row[i]).reverse());
   const prevShape = currentPiece.shape;
   currentPiece.shape = rotated;
   if (collides()) {
@@ -154,13 +152,7 @@ function collides() {
       if (val) {
         const r = currentPiece.row + rIdx;
         const c = currentPiece.col + cIdx;
-        return (
-          r < 0 ||
-          r >= ROWS ||
-          c < 0 ||
-          c >= COLS ||
-          board[r][c]
-        );
+        return r < 0 || r >= ROWS || c < 0 || c >= COLS || board[r][c];
       }
       return false;
     })
@@ -182,7 +174,7 @@ function mergePiece() {
 function clearLines() {
   let linesCleared = 0;
   for (let r = ROWS - 1; r >= 0; r--) {
-    if (board[r].every(cell => cell)) {
+    if (board[r].every((cell) => cell)) {
       board.splice(r, 1);
       board.unshift(Array(COLS).fill(null));
       linesCleared++;
@@ -194,7 +186,7 @@ function clearLines() {
     linesClearedTotal += linesCleared;
     $("#score").text(score);
     if (linesClearedTotal >= 10) {
-      console.log('velocidad aumentada en 50ms')
+      console.log("velocidad aumentada en 50ms");
       linesClearedTotal = 0;
       speed = Math.max(100, speed - 50);
       restartInterval();
@@ -241,7 +233,7 @@ function startGame() {
 // ========================
 // CONTROLES
 // ========================
-$(document).keydown(function(e) {
+$(document).keydown(function (e) {
   if (!isGameOver) {
     switch (e.key) {
       case "ArrowLeft":
@@ -262,16 +254,20 @@ $(document).keydown(function(e) {
 });
 
 // Controles móviles
-$("#btn-left").on("click", function() {
+$("#btn-left").on("click", function (e) {
+  e.preventDefault();
   if (!isGameOver) movePiece(-1);
 });
-$("#btn-right").on("click", function() {
+$("#btn-right").on("click", function (e) {
+  e.preventDefault();
   if (!isGameOver) movePiece(1);
 });
-$("#btn-down").on("click", function() {
+$("#btn-down").on("click", function (e) {
+  e.preventDefault();
   if (!isGameOver) dropPiece();
 });
-$("#btn-rotate").on("click", function() {
+$("#btn-rotate").on("click", function (e) {
+  e.preventDefault();
   if (!isGameOver) rotatePiece();
 });
 
