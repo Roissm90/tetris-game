@@ -215,9 +215,6 @@ body .container-grid .mobile-controls button#btn-rotate {
   }
 }
 @media (max-width: 576px) {
-  body .container-grid {
-    margin-top: auto;
-  }
   body .container-grid .title-game {
     font-size: 1rem;
   }
