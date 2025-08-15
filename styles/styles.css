@@ -1,0 +1,261 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Press Start 2P", monospace;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../public/fondo_tetris.jpg");
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+body:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7215686275);
+  z-index: 0;
+}
+body .container-grid {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+body .container-grid .title-game {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+body .container-grid .game-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+body .container-grid .game-wrapper .game-board {
+  display: grid;
+  grid-template-rows: repeat(20, 20px);
+  grid-template-columns: repeat(10, 20px);
+  background-color: #222;
+  border: 4px solid #fff;
+}
+body .container-grid .game-wrapper .game-board .cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #111;
+}
+body .container-grid .game-wrapper .game-board .filled {
+  background-color: #f00;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-I {
+  background-color: cyan;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-O {
+  background-color: yellow;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-T {
+  background-color: purple;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-S {
+  background-color: green;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-Z {
+  background-color: red;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-J {
+  background-color: blue;
+  border: none;
+}
+body .container-grid .game-wrapper .game-board .color-L {
+  background-color: orange;
+  border: none;
+}
+body .container-grid .game-wrapper .game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #222;
+  border: 4px solid #fff;
+  padding: 1rem;
+}
+body .container-grid .game-wrapper .game-info .score-box {
+  text-align: center;
+}
+body .container-grid .game-wrapper .game-info .score-box p {
+  margin-bottom: 5px;
+}
+body .container-grid .game-wrapper .game-info .score-box span {
+  font-size: 1.2rem;
+}
+body .container-grid .game-wrapper .game-info .next-piece {
+  text-align: center;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board {
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  display: grid;
+  grid-template-rows: repeat(4, 20px);
+  grid-template-columns: repeat(4, 20px);
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell {
+  width: 20px;
+  height: 20px;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.filled {
+  background-color: #f00;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-I {
+  background-color: cyan;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-O {
+  background-color: yellow;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-T {
+  background-color: purple;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-S {
+  background-color: green;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-Z {
+  background-color: red;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-J {
+  background-color: blue;
+}
+body .container-grid .game-wrapper .game-info .next-piece #next-piece-board .cell.color-L {
+  background-color: orange;
+}
+body .container-grid .game-wrapper .game-info #start-btn {
+  background-color: #0f0;
+  color: #000;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+body .container-grid .game-wrapper .game-info #start-btn:hover {
+  background-color: #0c0;
+}
+body .container-grid .mobile-controls {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 352px;
+}
+body .container-grid .mobile-controls button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  background-image: url("../public/arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  outline: none;
+}
+body .container-grid .mobile-controls button#btn-left {
+  transform: rotate(180deg);
+  order: 2;
+  width: 30%;
+}
+body .container-grid .mobile-controls button#btn-right {
+  transform: rotate(0deg);
+  order: 4;
+  width: 30%;
+}
+body .container-grid .mobile-controls button#btn-down {
+  background-image: url("../public/arrow-vertical.png");
+  order: 3;
+  width: 30%;
+}
+body .container-grid .mobile-controls button#btn-rotate {
+  width: 100%;
+  order: 1;
+  color: #000;
+  background-image: none;
+  padding: 0;
+}
+@media (max-width: 991px) {
+  body {
+    background-size: cover;
+  }
+  body .container-grid .mobile-controls {
+    display: flex;
+  }
+}
+@media (max-width: 576px) {
+  body .container-grid {
+    margin-top: auto;
+  }
+  body .container-grid .title-game {
+    font-size: 1rem;
+  }
+  body .container-grid .game-wrapper {
+    flex-direction: column-reverse;
+  }
+  body .container-grid .game-wrapper .game-info {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    max-width: 208px;
+    margin: 0 auto;
+    background-color: none;
+    border: none;
+    padding: 0;
+  }
+  body .container-grid .game-wrapper .game-info .score-box {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+  }
+  body .container-grid .game-wrapper .game-info .next-piece {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+  }
+  body .container-grid .game-wrapper .game-info #start-btn {
+    width: 100%;
+    max-width: 208px;
+    font-size: 0.7rem;
+    padding: 8px;
+  }
+  body .container-grid .game-wrapper .game-board {
+    width: fit-content;
+    margin: 0 auto;
+  }
+  body .container-grid .mobile-controls {
+    max-width: 312px;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
